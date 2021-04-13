@@ -8,14 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Area extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
     protected $guarded = [];
-    protected $attributes = [
-        'delivery_price' => 0,
-    ];
+    // protected $attributes = [
+    //     'delivery_price' => 0,
+    // ];
 
-    public function locality()
+    public function cities()
     {
-        return $this->belongsTo(Locality::class);
+        return $this->belongsTo(City::class, 'city_id', 'id');
+        // return City::where('id', $this->city_id)->first()->name;
     }
 }

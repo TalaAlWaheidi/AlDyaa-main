@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Delivery;
 use App\Http\Controllers\Controller;
 use App\Models\DeliveryMan;
 use Illuminate\Http\Request;
+// use RealRashid\SweetAlert\Facades\Alert;
+use Alert;
+
+
 
 class DeliveryManController extends Controller
 {
@@ -110,6 +114,8 @@ class DeliveryManController extends Controller
     public function destroy(DeliveryMan $id)
     {
         $id->delete();
-        return redirect()->route('delivaryman.all');
+        // return redirect()->route('delivaryman.all');
+        return response()->json(['state' => 'deleted']);
+        // alert()->success('Success Title', 'Success Message');
     }
 }

@@ -17,13 +17,32 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-//Delivary
+//Delivary Man
 Route::get('/delivaryman', [\App\Http\Controllers\Delivery\DeliveryManController::class, 'index'])->name('delivaryman.all');
 Route::get('/delivaryman/create', [\App\Http\Controllers\Delivery\DeliveryManController::class, 'create'])->name('delivaryman.create');
 Route::post('/delivaryman/create', [\App\Http\Controllers\Delivery\DeliveryManController::class, 'store'])->name('delivaryman.store');
 Route::delete('/delivaryman/delete/{id}', [\App\Http\Controllers\Delivery\DeliveryManController::class, 'destroy'])->name('delivaryman.delete');
 Route::get('/delivaryman/edit/{deliveryMan}', [\App\Http\Controllers\Delivery\DeliveryManController::class, 'edit'])->name('delivaryman.edit');
 Route::put('/delivaryman/edit/{deliveryMan}', [\App\Http\Controllers\Delivery\DeliveryManController::class, 'update'])->name('delivaryman.update');
+
+
+//City
+Route::get('/city', [\App\Http\Controllers\Delivery\CityController::class, 'index'])->name('city.all');
+Route::get('/city/create', [\App\Http\Controllers\Delivery\CityController::class, 'create'])->name('city.create');
+Route::post('/city/create', [\App\Http\Controllers\Delivery\CityController::class, 'store'])->name('city.store');
+Route::delete('/city/delete/{id}', [\App\Http\Controllers\Delivery\CityController::class, 'destroy'])->name('city.delete');
+Route::get('/city/edit/{city}', [\App\Http\Controllers\Delivery\CityController::class, 'edit'])->name('city.edit');
+Route::put('/city/edit/{city}', [\App\Http\Controllers\Delivery\CityController::class, 'update'])->name('city.update');
+
+//Area
+Route::get('/area', [\App\Http\Controllers\Delivery\AreaController::class, 'index'])->name('area.all');
+Route::get('/area/create', [\App\Http\Controllers\Delivery\AreaController::class, 'create'])->name('area.create');
+Route::post('/area/create', [\App\Http\Controllers\Delivery\AreaController::class, 'store'])->name('area.store');
+Route::delete('/area/delete/{id}', [\App\Http\Controllers\Delivery\AreaController::class, 'destroy'])->name('area.delete');
+Route::get('/area/edit/{area}', [\App\Http\Controllers\Delivery\AreaController::class, 'edit'])->name('area.edit');
+Route::put('/area/edit/{area}', [\App\Http\Controllers\Delivery\AreaController::class, 'update'])->name('area.update');
+
+
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -99,16 +118,16 @@ Route::group(['prefix' => 'setups', 'as' => 'setups.', 'middleware' => ['auth']]
 /** End Setup Route Group */
 
 /** Start Delivery Route Group */
-Route::group(['prefix' => 'delivery', 'as' => 'delivery.', 'middleware' => ['auth']], function () {
-    /** Start Areas Routes */
-    Route::group(['prefix' => 'area', 'as' => 'areas.'], function () {
-        Route::get('/areas', [\App\Http\Controllers\Delivery\AreasController::class, 'index'])->name('all');
-        Route::get('/areas/create', [\App\Http\Controllers\Delivery\AreasController::class, 'create'])->name('create');
-        Route::post('/areas/create', [\App\Http\Controllers\Delivery\AreasController::class, 'store'])->name('store');
-        Route::get('/areas/edit/{area}', [\App\Http\Controllers\Delivery\AreasController::class, 'edit'])->name('edit');
-        Route::put('/areas/edit/{area}', [\App\Http\Controllers\Delivery\AreasController::class, 'update'])->name('update');
-        Route::delete('/areas/delete/{area}', [\App\Http\Controllers\Delivery\AreasController::class, 'destroy'])->name('delete');
-    });
+// Route::group(['prefix' => 'delivery', 'as' => 'delivery.', 'middleware' => ['auth']], function () {
+//     /** Start Areas Routes */
+//     Route::group(['prefix' => 'area', 'as' => 'areas.'], function () {
+//         Route::get('/areas', [\App\Http\Controllers\Delivery\AreasController::class, 'index'])->name('all');
+//         Route::get('/areas/create', [\App\Http\Controllers\Delivery\AreasController::class, 'create'])->name('create');
+//         Route::post('/areas/create', [\App\Http\Controllers\Delivery\AreasController::class, 'store'])->name('store');
+//         Route::get('/areas/edit/{area}', [\App\Http\Controllers\Delivery\AreasController::class, 'edit'])->name('edit');
+//         Route::put('/areas/edit/{area}', [\App\Http\Controllers\Delivery\AreasController::class, 'update'])->name('update');
+//         Route::delete('/areas/delete/{area}', [\App\Http\Controllers\Delivery\AreasController::class, 'destroy'])->name('delete');
+//     });
     /** End Areas Routes */
 
     /** Start Branches Routes */

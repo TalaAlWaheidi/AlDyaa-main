@@ -3,46 +3,12 @@
 @extends('vendor.sweetalert.alert')
 
 
-
-<!-- Modal -->
-{{-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div> --}}
-
-{{-- action="{{ route('delivaryman.delete', $deliver->id) }}" --}}
-{{-- <form id="delete_modal" method="post">
-                @csrf
-                @method('DELETE') --}}
-{{-- <button class="btn btn-danger btn-sm delete-confirm" data-name="{{ $deliver->id }}"
-type=" submit">Delete</button> --}}
-
-
-{{-- <div class="modal-body">
-                    <input id="delete_aboutus_id">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Yes.Delete It</button>
-                </div>
-
-            </form>
-        </div>
-    </div>
-</div> --}}
-
 <div class="card">
     <div class="card-body ">
-        <span class="card-title">Delivery Man Table</span>
+        <span class="card-title">City Table</span>
         <div class="rtl">
-            <a href="{{ route('delivaryman.create') }}"
-                class="w-auto btn btn-outline-success btn-rounded btn-fw top-right mb-3">Create New Delivery Man</a>
+            <a href="{{ route('city.create') }}"
+                class="w-auto btn btn-outline-success btn-rounded btn-fw top-right mb-3">Create New City</a>
         </div>
         <div class="row">
             <div class="col-12">
@@ -52,21 +18,15 @@ type=" submit">Delete</button> --}}
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Car Name</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($deliveryMan as $deliver)
+                            @foreach($city as $city)
                             <tr>
-                                <input type="hidden" class="serdelete_val_id" value="{{ $deliver->id }}">
-                                <td> {{ $deliver->id  }} </td>
-                                <td> {{ $deliver->name  }} </td>
-                                <td> {{ $deliver->phone }} </td>
-                                <td> {{ $deliver->address }} </td>
-                                <td> {{ $deliver->carnum }} </td>
+                                <input type="hidden" class="serdelete_val_id" value="{{ $city->id }}">
+                                <td> {{ $city->id  }} </td>
+                                <td> {{ $city->name  }} </td>
                                 <td>
                                     {{-- <view-category-modal class="d-inline-flex"
                                         :category-id="{{ json_encode($deliver->id)  }}"
@@ -79,27 +39,7 @@ type=" submit">Delete</button> --}}
                                     :modal-id="{{ json_encode('exampleModal-'.$deliver->id) }}">
                                     </view-category-modal> --}}
 
-                                    <a href="{{ route('delivaryman.edit', $deliver->id) }}"
-                                        class="btn btn-outline-info">Edit</a>
-                                    {{-- <button class="btn btn-outline-danger swalalert"
-                                        onsubmit="document.getElementById('delete-form-{{ $deliver->id }}')">
-                                    delete
-                                    <form id="delete-form-{{$deliver->id}}"
-                                        action="{{ route('delivaryman.delete', $deliver->id) }}" method="POST"
-                                        class="d-none">
-                                        @csrf
-                                        @method('DELETE')
-                                        <input type="hidden" name="id" value="{{ $deliver->id }}">
-                                    </form>
-                                    </button> --}}
-                                    {{-- <form method="post" action="/delivarymann/{{$deliver->id}}">
-                                    @method("DELETE")
-                                    @csrf
-                                    <input type="submit" value="delete" class="btn btn-danger"
-                                        onclick="return confirm('Are you sure?')">
-                                    </form> --}}
-                                    {{-- <a class="btn btn-danger deletebtn" href="javascript:void(0)" data-toggle="modal"
-                                        data-target="#deleteModal">Delete</a> --}}
+                                    <a href="{{ route('city.edit', $city->id) }}" class="btn btn-outline-info">Edit</a>
 
                                     <button type="button" class="btn btn-outline-danger servdeletebtn">Delete</button>
 
@@ -145,7 +85,7 @@ type=" submit">Delete</button> --}}
                             };
                             $.ajax({
                                 type: "DELETE",
-                                url: '/delivaryman/delete/' + delete_id,
+                                url: '/city/delete/' + delete_id,
                                // data: data,
                                 data: { somefield: "Some field value", _token: '{{csrf_token()}}' },
                                 success: function(response) {
@@ -157,7 +97,7 @@ type=" submit">Delete</button> --}}
                                         timer: 800,
                                             })
                                         .then((willDelete) => {
-                                            window.location.href='/delivaryman';
+                                            window.location.href='/city';
                                             //location.reload();
                                         });
                                 }

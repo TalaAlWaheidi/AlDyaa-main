@@ -124,10 +124,10 @@
             </a>
             <div class="collapse" id="editors">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('delivery.areas.all') }}">Areas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('area.all') }}">Areas</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('delivery.branches.all') }}">Branches</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="#">Cities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('city.all') }}">Cities</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('delivery.discounts.all') }}">Delivery
                             Discount</a></li>
                     <li class="nav-item"><a class="nav-link"
