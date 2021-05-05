@@ -42,8 +42,23 @@ Route::delete('/area/delete/{id}', [\App\Http\Controllers\Delivery\AreaControlle
 Route::get('/area/edit/{area}', [\App\Http\Controllers\Delivery\AreaController::class, 'edit'])->name('area.edit');
 Route::put('/area/edit/{area}', [\App\Http\Controllers\Delivery\AreaController::class, 'update'])->name('area.update');
 
+//Delivery Lines
+Route::get('/delivaryline', [\App\Http\Controllers\Delivery\DeliveryLineController::class, 'index'])->name('delivaryline.all');
+Route::get('/delivaryline/create', [\App\Http\Controllers\Delivery\DeliveryLineController::class, 'create'])->name('delivaryline.create');
+Route::post('/delivaryline/create', [\App\Http\Controllers\Delivery\DeliveryLineController::class, 'store'])->name('delivaryline.store');
+Route::delete('/delivaryline/delete/{id}', [\App\Http\Controllers\Delivery\DeliveryLineController::class, 'destroy'])->name('delivaryline.delete');
+Route::get('/delivaryline/edit/{delivaryline}', [\App\Http\Controllers\Delivery\DeliveryLineController::class, 'edit'])->name('delivaryline.edit');
+Route::put('/delivaryline/edit/{delivaryline}', [\App\Http\Controllers\Delivery\DeliveryLineController::class, 'update'])->name('delivaryline.update');
 
 
+//Lines
+Route::get('/line/{id}', [\App\Http\Controllers\Delivery\LineController::class, 'index'])->name('line.all');
+//Route::post('/line/{id}', [\App\Http\Controllers\Delivery\LineController::class, 'index'])->name('line.all');
+Route::get('/line/create', [\App\Http\Controllers\Delivery\LineController::class, 'store']);
+Route::post('/line/create', [\App\Http\Controllers\Delivery\LineController::class, 'store']);
+Route::delete('/line/delete/{id}', [\App\Http\Controllers\Delivery\LineController::class, 'destroy'])->name('line.delete');
+
+// Route::post('/line', [\App\Http\Controllers\Delivery\LineController::class, 'store'])->name('line.store');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 /** Start Admin Layout  */
@@ -128,39 +143,39 @@ Route::group(['prefix' => 'setups', 'as' => 'setups.', 'middleware' => ['auth']]
 //         Route::put('/areas/edit/{area}', [\App\Http\Controllers\Delivery\AreasController::class, 'update'])->name('update');
 //         Route::delete('/areas/delete/{area}', [\App\Http\Controllers\Delivery\AreasController::class, 'destroy'])->name('delete');
 //     });
-    /** End Areas Routes */
+/** End Areas Routes */
 
-    /** Start Branches Routes */
-    Route::group(['prefix' => 'branch', 'as' => 'branches.'], function () {
-        Route::get('/branches', [\App\Http\Controllers\Delivery\BranchesController::class, 'index'])->name('all');
-        Route::get('/branches/create', [\App\Http\Controllers\Delivery\BranchesController::class, 'create'])->name('create');
-        Route::post('/branches/create', [\App\Http\Controllers\Delivery\BranchesController::class, 'store'])->name('store');
-        Route::get('/branches/edit/{branch}', [\App\Http\Controllers\Delivery\BranchesController::class, 'edit'])->name('edit');
-        Route::put('/branches/edit/{branch}', [\App\Http\Controllers\Delivery\BranchesController::class, 'update'])->name('update');
-        Route::delete('/branches/delete/{branch}', [\App\Http\Controllers\Delivery\BranchesController::class, 'destroy'])->name('delete');
-    });
-    /** End Branches Routes */
-
-    /** Start Delivery Discount Routes */
-    Route::group(['prefix' => 'discount', 'as' => 'discounts.'], function () {
-        Route::get('/discounts', [\App\Http\Controllers\Delivery\DeliveryDiscountController::class, 'index'])->name('all');
-        Route::get('/discounts/create', [\App\Http\Controllers\Delivery\DeliveryDiscountController::class, 'create'])->name('create');
-        Route::post('/discounts/create', [\App\Http\Controllers\Delivery\DeliveryDiscountController::class, 'store'])->name('store');
-        Route::get('/discounts/edit/{discount}', [\App\Http\Controllers\Delivery\DeliveryDiscountController::class, 'edit'])->name('edit');
-        Route::put('/discounts/edit/{discount}', [\App\Http\Controllers\Delivery\DeliveryDiscountController::class, 'update'])->name('update');
-        Route::delete('/discounts/delete/{discount}', [\App\Http\Controllers\Delivery\DeliveryDiscountController::class, 'destroy'])->name('delete');
-    });
-    /** End Delivery Discount Routes */
-
-    /** Start Localization Routes */
-    Route::group(['prefix' => 'locality', 'as' => 'localities.'], function () {
-        Route::get('/localities', [\App\Http\Controllers\Delivery\LocalizationController::class, 'index'])->name('all');
-        Route::get('/localities/create', [\App\Http\Controllers\Delivery\LocalizationController::class, 'create'])->name('create');
-        Route::post('/localities/create', [\App\Http\Controllers\Delivery\LocalizationController::class, 'store'])->name('store');
-        Route::get('/localities/edit/{locality}', [\App\Http\Controllers\Delivery\LocalizationController::class, 'edit'])->name('edit');
-        Route::put('/localities/edit/{locality}', [\App\Http\Controllers\Delivery\LocalizationController::class, 'update'])->name('update');
-        Route::delete('/localities/delete/{locality}', [\App\Http\Controllers\Delivery\LocalizationController::class, 'destroy'])->name('delete');
-    });
-    /** End Localization Routes */
+/** Start Branches Routes */
+Route::group(['prefix' => 'branch', 'as' => 'branches.'], function () {
+    Route::get('/branches', [\App\Http\Controllers\Delivery\BranchesController::class, 'index'])->name('all');
+    Route::get('/branches/create', [\App\Http\Controllers\Delivery\BranchesController::class, 'create'])->name('create');
+    Route::post('/branches/create', [\App\Http\Controllers\Delivery\BranchesController::class, 'store'])->name('store');
+    Route::get('/branches/edit/{branch}', [\App\Http\Controllers\Delivery\BranchesController::class, 'edit'])->name('edit');
+    Route::put('/branches/edit/{branch}', [\App\Http\Controllers\Delivery\BranchesController::class, 'update'])->name('update');
+    Route::delete('/branches/delete/{branch}', [\App\Http\Controllers\Delivery\BranchesController::class, 'destroy'])->name('delete');
 });
+/** End Branches Routes */
+
+/** Start Delivery Discount Routes */
+Route::group(['prefix' => 'discount', 'as' => 'discounts.'], function () {
+    Route::get('/discounts', [\App\Http\Controllers\Delivery\DeliveryDiscountController::class, 'index'])->name('all');
+    Route::get('/discounts/create', [\App\Http\Controllers\Delivery\DeliveryDiscountController::class, 'create'])->name('create');
+    Route::post('/discounts/create', [\App\Http\Controllers\Delivery\DeliveryDiscountController::class, 'store'])->name('store');
+    Route::get('/discounts/edit/{discount}', [\App\Http\Controllers\Delivery\DeliveryDiscountController::class, 'edit'])->name('edit');
+    Route::put('/discounts/edit/{discount}', [\App\Http\Controllers\Delivery\DeliveryDiscountController::class, 'update'])->name('update');
+    Route::delete('/discounts/delete/{discount}', [\App\Http\Controllers\Delivery\DeliveryDiscountController::class, 'destroy'])->name('delete');
+});
+/** End Delivery Discount Routes */
+
+/** Start Localization Routes */
+Route::group(['prefix' => 'locality', 'as' => 'localities.'], function () {
+    Route::get('/localities', [\App\Http\Controllers\Delivery\LocalizationController::class, 'index'])->name('all');
+    Route::get('/localities/create', [\App\Http\Controllers\Delivery\LocalizationController::class, 'create'])->name('create');
+    Route::post('/localities/create', [\App\Http\Controllers\Delivery\LocalizationController::class, 'store'])->name('store');
+    Route::get('/localities/edit/{locality}', [\App\Http\Controllers\Delivery\LocalizationController::class, 'edit'])->name('edit');
+    Route::put('/localities/edit/{locality}', [\App\Http\Controllers\Delivery\LocalizationController::class, 'update'])->name('update');
+    Route::delete('/localities/delete/{locality}', [\App\Http\Controllers\Delivery\LocalizationController::class, 'destroy'])->name('delete');
+});
+/** End Localization Routes */
+// });
 /** End Delivery Route Group */

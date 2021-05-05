@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDeliveryLinesTable extends Migration
+class CreateLinesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateDeliveryLinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('delivery_lines', function (Blueprint $table) {
+        Schema::create('lines', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable();
+            $table->unsignedBigInteger('delivery_line_id')->nullable();
+            $table->foreign('delivery_line_id')->references('id')->on('delivery_lines')->onDelete('cascade');
             $table->softDeletes($column = 'deleted_at', $precision = 0);
-            // $table->unsignedBigInteger('area_id')->nullable();
-            // $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateDeliveryLinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('delivery_lines');
+        Schema::dropIfExists('lines');
     }
 }

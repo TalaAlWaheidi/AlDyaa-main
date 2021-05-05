@@ -16,8 +16,16 @@
                         <input type="text" name="name" class="form-control" id="exampleInputCity"
                             placeholder="City Name" value="{{ $city->name }}">
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2">Update</button>
-                    {{-- <button class="btn btn-light">Cancel</button> --}}
+                </div>
+                <div class="form-group row">
+                    <label for="exampleInputCost" class="col-sm-3 col-form-label">Delivery Cost</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="cost" class="form-control" id="exampleInputCost"
+                            placeholder="Delivery Cost" value="{{ $city->cost }}">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Update</button>
+                {{-- <button class="btn btn-light">Cancel</button> --}}
             </form>
         </div>
     </div>

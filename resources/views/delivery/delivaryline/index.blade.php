@@ -5,10 +5,10 @@
 
 <div class="card">
     <div class="card-body ">
-        <span class="card-title">Area Table</span>
+        <span class="card-title">Delivery Lines Table</span>
         <div class="rtl">
-            <a href="{{ route('area.create') }}"
-                class="w-auto btn btn-outline-success btn-rounded btn-fw top-right mb-3">Create New Area</a>
+            <a href="{{ route('delivaryline.create') }}"
+                class="w-auto btn btn-outline-success btn-rounded btn-fw top-right mb-3">Create New Delivery Line</a>
         </div>
         <div class="row">
             <div class="col-12">
@@ -17,20 +17,16 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Area Name</th>
-                                <th>City Name</th>
-                                <th>Delivery Cost</th>
+                                <th>Name</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($areas as $area)
+                            @foreach($delivaryline as $deliveryline)
                             <tr>
-                                <input type="hidden" class="serdelete_val_id" value="{{ $area->id }}">
-                                <td>{{ $area->id }} </td>
-                                <td>{{ $area->name }} </td>
-                                <td>{{ $area->cities->name }} </td>
-                                <td>{{ $area->cost }} JD</td>
+                                <input type="hidden" class="serdelete_val_id" value="{{ $deliveryline->id }}">
+                                <td> {{ $deliveryline->id  }} </td>
+                                <td> {{ $deliveryline->name  }} </td>
                                 <td>
                                     {{-- <view-category-modal class="d-inline-flex"
                                         :category-id="{{ json_encode($deliver->id)  }}"
@@ -42,8 +38,14 @@
                                     :data-target="{{ json_encode('#exampleModal-'.$deliver->id) }}"
                                     :modal-id="{{ json_encode('exampleModal-'.$deliver->id) }}">
                                     </view-category-modal> --}}
+                                    <a href="{{ route('line.all', $deliveryline->id) }}"
+                                        class="btn btn-outline-warning">Details</a>
 
-                                    <a href="{{ route('area.edit', $area->id) }}" class="btn btn-outline-info">Edit</a>
+                                    <a href="{{ route('delivaryline.edit', $deliveryline->id) }}"
+                                        class="btn btn-outline-info">Edit</a>
+
+                                    {{-- <a href="{{ route('delivaryline.view', $deliveryline->id) }}"
+                                    class="btn btn-outline-info">View</a> --}}
 
                                     <button type="button" class="btn btn-outline-danger servdeletebtn">Delete</button>
 
@@ -76,7 +78,7 @@
                 //    alert('anas');
 
                 swal({
-                        title: "Are you sure?" + delete_id,
+                        title: "Are you sure?",
                         text: "Once deleted, you will not be able to recover this imaginary file!",
                         icon: "warning",
                         buttons: true,
@@ -89,7 +91,7 @@
                             };
                             $.ajax({
                                 type: "DELETE",
-                                url: '/area/delete/' + delete_id,
+                                url: '/delivaryline/delete/' + delete_id,
                                // data: data,
                                 data: { somefield: "Some field value", _token: '{{csrf_token()}}' },
                                 success: function(response) {
@@ -101,7 +103,7 @@
                                         timer: 800,
                                             })
                                         .then((willDelete) => {
-                                            window.location.href='/area';
+                                            window.location.href='/delivaryline';
                                             //location.reload();
                                         });
                                 }

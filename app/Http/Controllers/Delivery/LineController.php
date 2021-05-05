@@ -3,22 +3,31 @@
 namespace App\Http\Controllers\Delivery;
 
 use App\Http\Controllers\Controller;
-use App\Models\City;
+use App\Models\DeliveryLine;
+use App\Models\Line;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class CityController extends Controller
+class LineController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+        public function index($id,Request $request)
     {
-        $city = City::all();
-        // return view('de', compact('city'));
-        return view('delivery.city.index', compact('city'));
+        $line = DeliveryLine::find($id);
+//        dd($line);
+            $lines=Line::where('delivery_line_id','=',$id)->get();
+//            $lineid=DB::table('lines')->get('delivery_line_id',$lines);
+//            $lineid=Line::where('delivery_line_id', $request->selector)->get();
+//            dd($lines);
+        return view('delivery.delivaryline.view', compact('line','lines'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -27,7 +36,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        return view('delivery.city.create');
+        //
     }
 
     /**
@@ -38,8 +47,16 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        City::create($request->all());
-        return redirect()->route('city.all');
+        Line::create([
+            'name' => $request->name,
+            'delivery_line_id' => $request->selector,
+            // 'cost' => $request->cost,
+        ]);
+        // DB::table('lines')->insert($line);
+        // $request->session()->flash('message', "Data has been insert successful!.");
+        // return Redirect::back();
+
+        return redirect()->route('line.all');
     }
 
     /**
@@ -59,9 +76,9 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(City $city)
+    public function edit($id)
     {
-        return view('delivery.city.edit', compact('city'));
+        //
     }
 
     /**
@@ -71,14 +88,9 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, City $city)
+    public function update(Request $request, $id)
     {
-        $city->update([
-            'name' => $request->name,
-            'cost' => $request->cost,
-        ]);
-
-        return redirect()->route('city.all');
+        //
     }
 
     /**
@@ -87,7 +99,7 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(City $id)
+    public function destroy(Line $id)
     {
         $id->delete();
         return response()->json(['state' => 'deleted']);

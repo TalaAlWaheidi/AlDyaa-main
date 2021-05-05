@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Models\City;
+use COM;
 
 class AreaController extends Controller
 {
@@ -47,7 +48,9 @@ class AreaController extends Controller
         Area::create([
             'name' => $request->name,
             'city_id' => $request->selector,
+            'cost' => $request->cost,
         ]);
+        // Area::create($request->all());
         return redirect()->route('area.all');
     }
 
@@ -77,6 +80,9 @@ class AreaController extends Controller
     public function edit(Area $area)
     {
         $city = City::all();
+        $area = Area::find($area->id);
+        // dd($area);
+        // $city = City::find($area->id)->areas;
         return view('delivery.area.edit', compact('area', 'city'));
     }
 
@@ -92,6 +98,7 @@ class AreaController extends Controller
         $area->update([
             'name' => $request->name,
             'city_id' => $request->selector,
+            'cost' => $request->cost,
         ]);
         return redirect()->route('area.all');
     }

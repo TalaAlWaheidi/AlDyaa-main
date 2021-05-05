@@ -17,6 +17,10 @@ class Area extends Model
     public function cities()
     {
         return $this->belongsTo(City::class, 'city_id', 'id');
-        // return City::where('id', $this->city_id)->first()->name;
+    }
+
+    public function lines()
+    {
+        return $this->hasMany(DeliveryLine::class);
     }
 }

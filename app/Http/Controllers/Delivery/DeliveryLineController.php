@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Delivery;
 
 use App\Http\Controllers\Controller;
+use App\Models\Area;
+use App\Models\DeliveryLine;
 use Illuminate\Http\Request;
 
 class DeliveryLineController extends Controller
@@ -14,7 +16,8 @@ class DeliveryLineController extends Controller
      */
     public function index()
     {
-        //
+        $delivaryline = DeliveryLine::all();
+        return view('delivery.delivaryline.index', compact('delivaryline'));
     }
 
     /**
@@ -24,7 +27,7 @@ class DeliveryLineController extends Controller
      */
     public function create()
     {
-        //
+        return view('delivery.delivaryline.create');
     }
 
     /**
@@ -35,7 +38,8 @@ class DeliveryLineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DeliveryLine::create($request->all());
+        return redirect()->route('delivaryline.all');
     }
 
     /**
@@ -44,9 +48,13 @@ class DeliveryLineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function edit($id)
     {
-        //
+        $deliveryline = DeliveryLine::find($id);
+        // $dels = DeliveryLine::all();
+        // dd($deliveryline);
+        // $areas = Area::all();
+        return view('delivery.delivaryline.edit', compact('deliveryline'));
     }
 
     /**
@@ -55,9 +63,12 @@ class DeliveryLineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit1(DeliveryLine $deliveryline)
     {
-        //
+        // $delivery = DeliveryLine::find($deliveryline->id);
+        // dd($delivery);
+        // $areas = Area::all();
+        // return view('delivery.delivaryline.edit', compact('areas', 'delivery'));
     }
 
     /**
@@ -67,9 +78,18 @@ class DeliveryLineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, DeliveryLine $delivaryline)
     {
-        //
+        // $delivaryline->update([
+        //     'line' => $request->line,
+        //     'areaone' => $request->areaone,
+        //     'areatwo' => $request->areatwo,
+        //     'areathree' => $request->areathree,
+        // ]);
+        // return redirect()->route('delivaryline.all');
+
+        $delivaryline->update($request->all());
+        return redirect()->route('delivaryline.all');
     }
 
     /**
@@ -78,8 +98,9 @@ class DeliveryLineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DeliveryLine $id)
     {
-        //
+        $id->delete();
+        return response()->json(['state' => 'deleted']);
     }
 }

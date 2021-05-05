@@ -18,6 +18,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th>Delivery Cost</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -27,6 +28,7 @@
                                 <input type="hidden" class="serdelete_val_id" value="{{ $city->id }}">
                                 <td> {{ $city->id  }} </td>
                                 <td> {{ $city->name  }} </td>
+                                <td> {{ $city->cost  }} JD </td>
                                 <td>
                                     {{-- <view-category-modal class="d-inline-flex"
                                         :category-id="{{ json_encode($deliver->id)  }}"
